@@ -53,21 +53,21 @@ defmodule Soundex do
 
   """
 
-  @soundex_codes [{1, ["B", "F", "P", "V"]},
-                  {2, ["C", "G", "J", "K", "Q", "S", "X", "Z"]},
-                  {3, ["D", "T"]},
-                  {4, ["L"]},
-                  {5, ["M", "N"]},
-                  {6, ["R"]},
-                  # H & W are not soundex codes, but are used to
-                  # determine how to compress characters around them
-                  {:hw, ["H", "W"]},
-                  # Vowels
-                  {:vowel, ["A", "E", "I", "O", "U", "Y"]}]
+  @soundex_codes %{["B", "F", "P", "V"] => 1,
+                   ["C", "G", "J", "K", "Q", "S", "X", "Z"] => 2,
+                   ["D", "T"] => 3,
+                   ["L"] => 4,
+                   ["M", "N"] => 5,
+                   ["R"] => 6,
+                   # H & W are not soundex codes, but are used to
+                   # determine how to compress characters around them
+                   ["H", "W"] => :hw,
+                   # Vowels
+                   ["A", "E", "I", "O", "U", "Y"] => :vowel}
  
 
 
-    @doc """
+  @doc """
   Compute the Soundex code of a string. 
 
   For details, see (http://en.wikipedia.org/wiki/soundex)[the Wikipedia entry].
@@ -153,18 +153,12 @@ defmodule Soundex do
   # Tag a codepoint--a length-1 binary string--with its Soundex code.
   # Only (English) alphabet codepoints get specific tags. Everything
   # else is tagged with 0.
-  defp tag_codepoint(c) when byte_size(c) == 1 do
-    tag_codepoint(c, @soundex_codes)
-  end
-  
-  defp tag_codepoint(c, []), do: {c, 0}  
+  def tag_codepoint(c) when byte_size(c) == 1 do
+    key = @soundex_codes
+    |> Map.keys
+    |> Enum.find(&Enum.member?(&1, String.upcase(c)))
 
-  defp tag_codepoint(c, [{tag, codepoints}|rest]) do
-    if Enum.find(codepoints, &(&1 == String.upcase(c))) do
-      {c, tag}
-    else
-      tag_codepoint(c, rest)
-    end
+    {c, Map.get(@soundex_codes, key, 0)}
   end
 
 
