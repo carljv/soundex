@@ -50,4 +50,4 @@ Unicode letters are also ignored:
 One exception to this is the German *esszet*, which Unicode treats as two S's:
 
     iex> Soundex.soundex("Straßer") == Soundex.soundex("Strasser")
-
+    true
