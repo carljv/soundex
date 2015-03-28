@@ -6,7 +6,7 @@ defmodule Soundex do
   A Soundex code begins with the first letter of the name, followed by three digits.
   They are typically used to match like-sounding names.
 
-  For more information, see (http://en.wikipedia.org/wiki/soundex/)[the Wikipedia entry].
+  For more information, see [the Wikipedia entry](http://en.wikipedia.org/wiki/soundex/).
 
   ## Examples:
 
