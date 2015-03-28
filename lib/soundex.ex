@@ -184,7 +184,8 @@ defmodule Soundex do
   # are the same code, regardless of the letter.
   defp same_tag?({_, x1}, {_, x2}), do: x1 == x2
 
-  defp same_tag?(x, y) when is_binary(x <> y) and byte_size(x <> y) == 1 do
+  # Tag equality for strings
+  defp same_tag?(x, y) do
     get_codepoint_tag(x) == get_codepoint_tag(y)
   end
 
