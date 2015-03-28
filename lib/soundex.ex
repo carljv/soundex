@@ -6,7 +6,7 @@ defmodule Soundex do
   A Soundex code begins with the first letter of the name, followed by three digits.
   They are typically used to match like-sounding names.
 
-  For more information, see (http://en.wikipedia.org/wiki/soundex)[the Wikipedia entry].
+  For more information, see (http://en.wikipedia.org/wiki/soundex/)[the Wikipedia entry].
 
   ## Examples:
 
@@ -156,7 +156,7 @@ defmodule Soundex do
   def tag_codepoint(c) when byte_size(c) == 1 do
     key = @soundex_codes
     |> Map.keys
-    |> Enum.find(&(String.upcase(c) in &1))
+    |> Enum.find(&(String.upcase(c) in ))
 
     {c, Map.get(@soundex_codes, key, 0)}
   end

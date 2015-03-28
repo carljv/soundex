@@ -7,7 +7,7 @@ Soundex is an algorithm for representing (mainly English) names as short phoneti
 A Soundex code begins with the first letter of the name, followed by three digits.
 They are typically used to match like-sounding names.
 
-For more information, see (http://en.wikipedia.org/wiki/soundex)[the Wikipedia entry].
+For more information, see (http://en.wikipedia.org/wiki/soundex/)[the Wikipedia entry].
 
 ## Examples:
 
