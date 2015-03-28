@@ -143,11 +143,13 @@ defmodule Soundex do
 
   iex> Soundex.soundex("Jackson")
   "J250"
+  iex> Soundex.soundex("O'Brien")  # Punctuation is ignored.
+  "O165"
   iex> Soundex.soundex("Pinata")  
   "P530"
   iex> Soundex.soundex("Piata")
   "P300"
-  iex> Soundex.soundex("Piñata")
+  iex> Soundex.soundex("Piñata")  # The ñ is ignored, not treated as n.
   "P300"
 
   """
