@@ -156,7 +156,7 @@ defmodule Soundex do
   def tag_codepoint(c) when byte_size(c) == 1 do
     key = @soundex_codes
     |> Map.keys
-    |> Enum.find(&(String.upcase(c) in ))
+    |> Enum.find(&(String.upcase(c) in &1))
 
     {c, Map.get(@soundex_codes, key, 0)}
   end
