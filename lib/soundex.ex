@@ -126,7 +126,7 @@ defmodule Soundex do
     tags
     |> Enum.reduce([],
                    fn (x, []) -> [x]
-                      (x, acc=[h|_]) -> if same_tag?(x, h) do acc else [x|acc] end
+                      (x, acc=[h|_]) -> if same_tag?(x, h), do: acc, else: [x|acc]
                    end)
     |> Enum.reverse
   end
